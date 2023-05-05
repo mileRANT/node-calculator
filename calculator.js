@@ -22,6 +22,23 @@ app.post("/",function(req, res){
     res.send("The result of adding these two numbers is: " + result);
 });
 
+app.get("/bmi-calc", function(req, res){
+    // res.send("Confirm working");
+    // res.sendFile("index.html");
+    res.sendFile(__dirname + "/bmi-calc.html");        //gives the path as we may not know the full path on server
+});
+
+app.post("/bmi-calc", function(req, res){
+    // res.send("Confirm working");
+    // res.sendFile("index.html");
+    var height = parseFloat(req.body.height);
+    var weight = parseFloat(req.body.weight);
+    var bmi = weight/ (height*height);
+
+    res.send("Your BMI is " + bmi);
+});
+
+
 app.listen(3000, function(){
     console.log("Server running");
 });
